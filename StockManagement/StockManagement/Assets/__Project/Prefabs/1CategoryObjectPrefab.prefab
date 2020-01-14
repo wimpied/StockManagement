@@ -334,6 +334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   secondaryCategoryPrefab: {fileID: 8636790820696955418, guid: 3e70d7693af821c42870b49b03072fd7,
     type: 3}
+  secondaryCategoryLabel: {fileID: 0}
   selectedMaterial: {fileID: 2100000, guid: 121c12fd62ca8124ab2683d05e75a9a2, type: 2}
   selected: 0
 --- !u!65 &6925927784358838449

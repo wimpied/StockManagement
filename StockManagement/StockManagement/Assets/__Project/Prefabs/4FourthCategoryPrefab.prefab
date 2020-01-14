@@ -361,5 +361,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fifthCategoryObjectPrefab: {fileID: 9188344368109057068, guid: b49827f4b69722c48bbbbd927cf12458,
     type: 3}
+  fifthCategoryLabel: {fileID: 0}
   selectedMaterial: {fileID: 2100000, guid: 686068e8dd6bb134aadfd72512577f94, type: 2}
   selected: 0
