@@ -331,7 +331,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8687664958983883707
 MonoBehaviour:
@@ -348,6 +348,7 @@ MonoBehaviour:
   fourthCategoryObjectPrefab: {fileID: 8636790820696955418, guid: 551f7aba8e979af428b46350a9035713,
     type: 3}
   selectedMaterial: {fileID: 2100000, guid: 686068e8dd6bb134aadfd72512577f94, type: 2}
+  selected: 0
 --- !u!114 &3605990094227742423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,3 +362,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightMat: {fileID: 2100000, guid: 66863163611231f4bb7cbc32c3fe01ad, type: 2}
+  scaleUpValue: 3

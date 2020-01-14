@@ -16,13 +16,13 @@ public class Highlight : MonoBehaviour
         }
 
         ChangeColor(highlightMat);
-        //ScaleUp(new Vector3(scaleUpValue, scaleUpValue, scaleUpValue));
+        ScaleUp(new Vector3(scaleUpValue, scaleUpValue, 1));
     }
 
     private void OnMouseExit()
     {
         ChangeColor(originalMat);
-        //ScaleUp(Vector3.one);
+        ScaleUp(Vector3.one);
     }
 
     void ChangeColor(Material mat)
@@ -32,6 +32,6 @@ public class Highlight : MonoBehaviour
 
     void ScaleUp(Vector3 scaleVector)
     {
-        transform.localScale = scaleVector;
+        transform.GetChild(0).localScale = scaleVector;
     }
 }

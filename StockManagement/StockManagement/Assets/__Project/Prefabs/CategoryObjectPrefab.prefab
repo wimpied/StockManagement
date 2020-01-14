@@ -335,6 +335,7 @@ MonoBehaviour:
   secondaryCategoryPrefab: {fileID: 8636790820696955418, guid: 3e70d7693af821c42870b49b03072fd7,
     type: 3}
   selectedMaterial: {fileID: 2100000, guid: 121c12fd62ca8124ab2683d05e75a9a2, type: 2}
+  selected: 0
 --- !u!65 &6925927784358838449
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -361,3 +362,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightMat: {fileID: 2100000, guid: 66863163611231f4bb7cbc32c3fe01ad, type: 2}
+  scaleUpValue: 3

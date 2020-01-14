@@ -8,6 +8,7 @@ public class SecondCategoryController : MonoBehaviour
     [SerializeField] private GameObject thirdCategoryObjectPrefab;
     [SerializeField] private Material selectedMaterial;
 
+    public bool selected = false;
     private List<InventoryLineItem> inventoryLineItems;
     Dictionary<string, List<InventoryLineItem>> thirdCategory;
 
@@ -25,6 +26,8 @@ public class SecondCategoryController : MonoBehaviour
     private void OnMouseDown()
     {
         ExpandData();
+        selected = true;
+        DeselectSiblings();
     }
 
     private void ExpandData()
@@ -51,9 +54,28 @@ public class SecondCategoryController : MonoBehaviour
             thirdCategoryObject.name = categoryItem.Key + "_Object";
             thirdCategoryObject.GetComponentInChildren<TextMeshPro>().text = categoryItem.Key;
 
+            //highlight
+            ShowAsSelected(thirdCategoryObject);
+
         }
     }
 
+    private void DeselectSiblings()
+    {
+        foreach (var item in FindObjectsOfType<SecondCategoryController>())
+        {
+            if (item.GetComponent<SecondCategoryController>().selected)
+                continue;
+            else item.gameObject.SetActive(false);
+        }
+    }
+
+    private void ShowAsSelected(GameObject selectedObject)
+    {
+        selectedObject.GetComponentInChildren<Renderer>().material = selectedMaterial;
+        if (this.GetComponentInChildren<Renderer>() != null)
+            this.GetComponentInChildren<Renderer>().material = selectedMaterial;
+    }
 
     private void PopulateThirdCategoryDictionary()
     {

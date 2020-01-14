@@ -8,6 +8,7 @@ public class ThirdCategoryController : MonoBehaviour
     [SerializeField] private GameObject fourthCategoryObjectPrefab;
     [SerializeField] private Material selectedMaterial;
 
+    public bool selected = false;
     private List<InventoryLineItem> inventoryLineItems;
     Dictionary<string, List<InventoryLineItem>> fourthCategory;
 
@@ -25,6 +26,8 @@ public class ThirdCategoryController : MonoBehaviour
     private void OnMouseDown()
     {
         ExpandData();
+        selected = true;
+        DeselectSiblings();
     }
 
     private void ExpandData()
@@ -51,9 +54,29 @@ public class ThirdCategoryController : MonoBehaviour
             fourthCategoryObject.name = categoryItem.Key + "_Object";
             fourthCategoryObject.GetComponentInChildren<TextMeshPro>().text = categoryItem.Key;
 
+            //highlight
+            ShowAsSelected(fourthCategoryObject);
+
         }
     }
 
+    private void DeselectSiblings()
+    {
+        foreach (var item in FindObjectsOfType<ThirdCategoryController>())
+        {
+            if (item.GetComponent<ThirdCategoryController>().selected)
+                continue;
+            else item.gameObject.SetActive(false);
+        }
+    }
+
+
+    private void ShowAsSelected(GameObject selectedObject)
+    {
+        selectedObject.GetComponentInChildren<Renderer>().material = selectedMaterial;
+        if (this.GetComponentInChildren<Renderer>() != null)
+            this.GetComponentInChildren<Renderer>().material = selectedMaterial;
+    }
 
     private void PopulateFourthCategoryDictionary()
     {
