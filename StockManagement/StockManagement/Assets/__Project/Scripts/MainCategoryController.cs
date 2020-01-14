@@ -24,7 +24,12 @@ public class MainCategoryController : MonoBehaviour
 
     private void OnMouseDown()
     {
+        ExpandData();
+    }
 
+    private void ExpandData()
+    {
+        Debug.Log("Mouse Down");
         PopulateSecondCategoryDictionary();
 
         float offsetY = 0;
@@ -39,24 +44,13 @@ public class MainCategoryController : MonoBehaviour
             offsetY += 5;
 
             //pass information to instantiated categoryObject
-            SecondCategoryController subArea3Controller = secondaryCatgoryObject.GetComponent<SecondCategoryController>();
-            subArea3Controller.Init(categoryItem.Key, inventoryLineItems);
+            SecondCategoryController categoryController = secondaryCatgoryObject.GetComponent<SecondCategoryController>();
+            categoryController.Init(categoryItem.Key, inventoryLineItems);
 
             //set names
             secondaryCatgoryObject.name = categoryItem.Key + "_Object";
             secondaryCatgoryObject.GetComponentInChildren<TextMeshPro>().text = categoryItem.Key;
-
-            //highlight
-            ShowAsSelected(secondaryCatgoryObject);
-
         }
-    }
-
-    private void ShowAsSelected(GameObject selectedObject)
-    {
-        selectedObject.GetComponentInChildren<Renderer>().material = selectedMaterial;
-        if (this.GetComponentInChildren<Renderer>() != null)
-            this.GetComponentInChildren<Renderer>().material = selectedMaterial;
     }
 
     private void PopulateSecondCategoryDictionary()

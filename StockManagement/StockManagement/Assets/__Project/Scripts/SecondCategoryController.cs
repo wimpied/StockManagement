@@ -24,7 +24,12 @@ public class SecondCategoryController : MonoBehaviour
 
     private void OnMouseDown()
     {
+        ExpandData();
+    }
 
+    private void ExpandData()
+    {
+        Debug.Log("Mouse down");
         PopulateThirdCategoryDictionary();
 
         float offsetY = 0;
@@ -39,25 +44,16 @@ public class SecondCategoryController : MonoBehaviour
             offsetY += 5;
 
             //pass information to instantiated categoryObject
-            SecondCategoryController productCategoryDescriptionController = thirdCategoryObject.GetComponent<SecondCategoryController>();
-            productCategoryDescriptionController.Init(categoryItem.Key, inventoryLineItems);
+            ThirdCategoryController categoryController = thirdCategoryObject.GetComponent<ThirdCategoryController>();
+            categoryController.Init(categoryItem.Key, inventoryLineItems);
 
             //set names
             thirdCategoryObject.name = categoryItem.Key + "_Object";
             thirdCategoryObject.GetComponentInChildren<TextMeshPro>().text = categoryItem.Key;
 
-            //highlight
-            ShowAsSelected(thirdCategoryObject);
-
         }
     }
 
-    private void ShowAsSelected(GameObject selectedObject)
-    {
-        selectedObject.GetComponentInChildren<Renderer>().material = selectedMaterial;
-        if (this.GetComponentInChildren<Renderer>() != null)
-            this.GetComponentInChildren<Renderer>().material = selectedMaterial;
-    }
 
     private void PopulateThirdCategoryDictionary()
     {
@@ -65,12 +61,12 @@ public class SecondCategoryController : MonoBehaviour
 
         foreach (var lineItem in inventoryLineItems)
         {
-            if (string.IsNullOrEmpty(lineItem.SubArea3)) continue;
+            if (string.IsNullOrEmpty(lineItem.ProductCategoryDescription)) continue;
 
-            if (!thirdCategory.TryGetValue(lineItem.SubArea3, out List<InventoryLineItem> list))
+            if (!thirdCategory.TryGetValue(lineItem.ProductCategoryDescription, out List<InventoryLineItem> list))
             {
                 list = new List<InventoryLineItem>();
-                thirdCategory.Add(lineItem.SubArea3, list);
+                thirdCategory.Add(lineItem.ProductCategoryDescription, list);
             }
 
             list.Add(lineItem);

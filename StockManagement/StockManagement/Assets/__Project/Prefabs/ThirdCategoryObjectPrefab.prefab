@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5623555135286803269}
   - component: {fileID: 8726833837001041690}
   - component: {fileID: 5571306933054788895}
-  - component: {fileID: 1248245012555332542}
   m_Layer: 0
   m_Name: CategoryModel
   m_TagString: Untagged
@@ -80,19 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1248245012555332542
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 47167908865325563}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &332438193723472773
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,7 +115,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.802}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &7991750531695893583
@@ -309,9 +295,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3344291938358360121}
   - component: {fileID: 6925927784358838449}
-  - component: {fileID: -6776705213224719185}
+  - component: {fileID: 8687664958983883707}
+  - component: {fileID: 3605990094227742423}
   m_Layer: 0
-  m_Name: SecondaryCategoryObjectPrefab
+  m_Name: ThirdCategoryObjectPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -346,7 +333,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-6776705213224719185
+--- !u!114 &8687664958983883707
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -355,7 +342,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 8636790820696955418}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 103d824278866954eb5ad44e471e933f, type: 3}
+  m_Script: {fileID: 11500000, guid: d72c7bb73c3789d45af7c2fcf42b3e7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SecondaryCategoryPrefab: {fileID: 0}
+  fourthCategoryObjectPrefab: {fileID: 8636790820696955418, guid: 551f7aba8e979af428b46350a9035713,
+    type: 3}
+  selectedMaterial: {fileID: 2100000, guid: 686068e8dd6bb134aadfd72512577f94, type: 2}
+--- !u!114 &3605990094227742423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8636790820696955418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a674bb41498b7234589eb7f0a30ffaa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightMat: {fileID: 2100000, guid: 66863163611231f4bb7cbc32c3fe01ad, type: 2}

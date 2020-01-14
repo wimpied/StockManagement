@@ -295,10 +295,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3344291938358360121}
   - component: {fileID: 6925927784358838449}
-  - component: {fileID: -6776705213224719185}
-  - component: {fileID: 1349642788762759528}
+  - component: {fileID: 1211561046267833862}
+  - component: {fileID: 3370435688450407680}
   m_Layer: 0
-  m_Name: SecondaryCategoryObjectPrefab
+  m_Name: FourthCategoryPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -333,22 +333,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-6776705213224719185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8636790820696955418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 103d824278866954eb5ad44e471e933f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thirdCategoryObjectPrefab: {fileID: 8636790820696955418, guid: 5abe83bda27f55646b2ad26c40d7ed95,
-    type: 3}
-  selectedMaterial: {fileID: 2100000, guid: a112f0ed9a6817148b081830f1799138, type: 2}
---- !u!114 &1349642788762759528
+--- !u!114 &1211561046267833862
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -361,3 +346,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightMat: {fileID: 2100000, guid: 66863163611231f4bb7cbc32c3fe01ad, type: 2}
+--- !u!114 &3370435688450407680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8636790820696955418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ecd1ace533bfb4c9ca0f39bce68aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fifthCategoryObjectPrefab: {fileID: 9188344368109057068, guid: b49827f4b69722c48bbbbd927cf12458,
+    type: 3}
+  selectedMaterial: {fileID: 2100000, guid: 686068e8dd6bb134aadfd72512577f94, type: 2}
