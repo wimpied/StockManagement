@@ -296,9 +296,9 @@ GameObject:
   - component: {fileID: 2753610547523720719}
   - component: {fileID: 7512658831786208903}
   - component: {fileID: 1769863674703921200}
-  - component: {fileID: 2781452835735491382}
+  - component: {fileID: 3619034134309973233}
   m_Layer: 0
-  m_Name: FifthCategoryPrefab
+  m_Name: 5FifthCategoryPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -347,7 +347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightMat: {fileID: 2100000, guid: 66863163611231f4bb7cbc32c3fe01ad, type: 2}
   scaleUpValue: 3
---- !u!114 &2781452835735491382
+--- !u!114 &3619034134309973233
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -356,9 +356,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 9188344368109057068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79ecd1ace533bfb4c9ca0f39bce68aa4, type: 3}
+  m_Script: {fileID: 11500000, guid: 970a8e15d82e4e84ead85b7fee8b0862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fifthCategoryObjectPrefab: {fileID: 0}
+  categoryPrefab: {fileID: 0}
   selectedMaterial: {fileID: 0}
   selected: 0
+  dataColumnName: 5
+  MyColumnName: 5

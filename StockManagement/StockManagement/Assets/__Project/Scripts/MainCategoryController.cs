@@ -27,7 +27,7 @@ public class MainCategoryController : MonoBehaviour
     {
         ExpandData();
         selected = true;
-        DeselectSiblings();
+        //DeselectSiblings();
     }
 
     private void ExpandData()
@@ -41,23 +41,39 @@ public class MainCategoryController : MonoBehaviour
             Debug.Log(categoryItem.Key);
 
             //instantiate the MainCategory prefab here
-            GameObject secondaryCatgoryObject = Instantiate(secondaryCategoryPrefab);
+            GameObject categoryObject = Instantiate(secondaryCategoryPrefab, GetCorrectColumnTransform());
             //offset objects here
-            secondaryCatgoryObject.transform.position = new Vector3(this.transform.position.x + 15, this.transform.position.y - offsetY, this.transform.position.z);
+            categoryObject.transform.localPosition = new Vector3(0, -offsetY, 0);
             offsetY += 5;
 
             //pass information to instantiated categoryObject
-            SecondCategoryController categoryController = secondaryCatgoryObject.GetComponent<SecondCategoryController>();
+            SecondCategoryController categoryController = categoryObject.GetComponent<SecondCategoryController>();
             categoryController.Init(categoryItem.Key, inventoryLineItems);
 
             //set names
-            secondaryCatgoryObject.name = categoryItem.Key + "_Object";
-            secondaryCatgoryObject.GetComponentInChildren<TextMeshPro>().text = categoryItem.Key;
+            categoryObject.name = categoryItem.Key + "_Object";
+            categoryObject.GetComponentInChildren<TextMeshPro>().text = categoryItem.Key;
 
             //highlight
-            ShowAsSelected(secondaryCatgoryObject);
+            ShowAsSelected(categoryObject);
 
         }
+    }
+
+    //to place objects under
+    public ColumnIdentifier.ColumnNames MyColumnName;
+    ColumnIdentifier columnIdentifier;
+    Transform columnTransform;
+    Transform GetCorrectColumnTransform()
+    {
+        foreach (ColumnIdentifier item in FindObjectsOfType<ColumnIdentifier>())
+        {
+            if (item.ThisColumnName == MyColumnName)
+            {
+                return item.transform;
+            }
+        }
+        return null;
     }
 
     private void DeselectSiblings()
@@ -66,9 +82,14 @@ public class MainCategoryController : MonoBehaviour
         {
             if (item.GetComponent<MainCategoryController>().selected)
                 continue;
-            else item.gameObject.SetActive(false);
+            else
+            {
+                //item.gameObject.SetActive(false);
+            }
+
         }
     }
+
 
     private void ShowAsSelected(GameObject selectedObject)
     {

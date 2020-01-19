@@ -25,24 +25,40 @@ public class RetrieveData : MonoBehaviour
             Debug.Log(categoryItem.Key);
 
             //instantiate the MainCategory prefab here
-            GameObject newMainCategoryObject = Instantiate(mainCategoryPrefab);
+            GameObject categoryObject = Instantiate(mainCategoryPrefab, GetCorrectColumnTransform());
             //offset objects here
-            newMainCategoryObject.transform.position = new Vector3(this.transform.position.x +10, this.transform.position.y - offsetY, this.transform.position.z);
+            categoryObject.transform.localPosition = new Vector3(0, -offsetY, 0);
             offsetY += 5;
 
             //pass information to instantiated categoryObject
-            MainCategoryController mainCategoryController = newMainCategoryObject.GetComponent<MainCategoryController>();
-            mainCategoryController.Init(categoryItem.Key, categoryItem.Value);
+            GenericCategoryController categoryController = categoryObject.GetComponent<GenericCategoryController>();
+            categoryController.Init(categoryItem.Key, categoryItem.Value);
 
             //set names
-            newMainCategoryObject.name = categoryItem.Key + "_Object";
-            newMainCategoryObject.GetComponentInChildren<TextMeshPro>().text = categoryItem.Key;
+            categoryObject.name = categoryItem.Key + "_Object";
+            categoryObject.GetComponentInChildren<TextMeshPro>().text = categoryItem.Key;
 
             //highlight
-            ShowAsSelected(newMainCategoryObject);
+            ShowAsSelected(categoryObject);
         }
 
         Debug.Log(inventoryLineItems.Count + " line items retrieved from CSV");
+    }
+
+    //to place objects under
+    public ColumnIdentifier.ColumnNames MyColumnName;
+    ColumnIdentifier columnIdentifier;
+    Transform columnTransform;
+    Transform GetCorrectColumnTransform()
+    {
+        foreach (ColumnIdentifier item in FindObjectsOfType<ColumnIdentifier>())
+        {
+            if (item.ThisColumnName == MyColumnName)
+            {
+                return item.transform;
+            }
+        }
+        return null;
     }
 
     private void ShowAsSelected(GameObject selectedObject)

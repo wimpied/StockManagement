@@ -295,10 +295,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3344291938358360121}
   - component: {fileID: 6925927784358838449}
-  - component: {fileID: -6776705213224719185}
   - component: {fileID: 1349642788762759528}
+  - component: {fileID: 7451856788365329368}
   m_Layer: 0
-  m_Name: SecondaryCategoryObjectPrefab
+  m_Name: 2SecondaryCategoryObjectPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -333,23 +333,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-6776705213224719185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8636790820696955418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 103d824278866954eb5ad44e471e933f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thirdCategoryObjectPrefab: {fileID: 8636790820696955418, guid: 5abe83bda27f55646b2ad26c40d7ed95,
-    type: 3}
-  thirdCategoryLabel: {fileID: 0}
-  selectedMaterial: {fileID: 2100000, guid: a112f0ed9a6817148b081830f1799138, type: 2}
-  selected: 0
 --- !u!114 &1349642788762759528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,3 +347,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightMat: {fileID: 2100000, guid: 66863163611231f4bb7cbc32c3fe01ad, type: 2}
   scaleUpValue: 3
+--- !u!114 &7451856788365329368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8636790820696955418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970a8e15d82e4e84ead85b7fee8b0862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  categoryPrefab: {fileID: 8636790820696955418, guid: 5abe83bda27f55646b2ad26c40d7ed95,
+    type: 3}
+  selectedMaterial: {fileID: 2100000, guid: a112f0ed9a6817148b081830f1799138, type: 2}
+  selected: 0
+  dataColumnName: 2
+  MyColumnName: 2

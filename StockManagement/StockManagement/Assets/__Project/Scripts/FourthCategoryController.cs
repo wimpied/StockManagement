@@ -27,7 +27,7 @@ public class FourthCategoryController : MonoBehaviour
     {
         ExpandData();
         selected = true;
-        DeselectSiblings();
+        //DeselectSiblings();
     }
 
     private void ExpandData()
@@ -39,25 +39,41 @@ public class FourthCategoryController : MonoBehaviour
         foreach (var categoryItem in fifthCategory)
         {
             Debug.Log(categoryItem.Key);
-
+            
             //instantiate the MainCategory prefab here
-            GameObject fifthCategoryObject = Instantiate(fifthCategoryObjectPrefab);
+            GameObject categoryObject = Instantiate(fifthCategoryObjectPrefab, GetCorrectColumnTransform());
             //offset objects here
-            fifthCategoryObject.transform.position = new Vector3(this.transform.position.x + 15, this.transform.position.y - offsetY, this.transform.position.z);
+            categoryObject.transform.localPosition = new Vector3(0, -offsetY, 0);
             offsetY += 5;
 
             //pass information to instantiated categoryObject
-            FourthCategoryController categoryController = fifthCategoryObject.GetComponent<FourthCategoryController>();
+            FourthCategoryController categoryController = categoryObject.GetComponent<FourthCategoryController>();
             categoryController.Init(categoryItem.Key, inventoryLineItems);
 
             //set names
-            fifthCategoryObject.name = categoryItem.Key + "_Object";
-            fifthCategoryObject.GetComponentInChildren<TextMeshPro>().text = categoryItem.Key;
+            categoryObject.name = categoryItem.Key + "_Object";
+            categoryObject.GetComponentInChildren<TextMeshPro>().text = categoryItem.Key;
 
             //highlight
-            ShowAsSelected(fifthCategoryObject);
-
+            ShowAsSelected(categoryObject);
+            
         }
+    }
+
+    //to place objects under
+    public ColumnIdentifier.ColumnNames MyColumnName;
+    ColumnIdentifier columnIdentifier;
+    Transform columnTransform;
+    Transform GetCorrectColumnTransform()
+    {
+        foreach (ColumnIdentifier item in FindObjectsOfType<ColumnIdentifier>())
+        {
+            if (item.ThisColumnName == MyColumnName)
+            {
+                return item.transform;
+            }
+        }
+        return null;
     }
 
     private void DeselectSiblings()
