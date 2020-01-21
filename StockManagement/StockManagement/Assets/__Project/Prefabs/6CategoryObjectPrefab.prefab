@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 1769863674703921200}
   - component: {fileID: 3619034134309973233}
   m_Layer: 0
-  m_Name: 5FifthCategoryPrefab
+  m_Name: 6CategoryObjectPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -359,8 +359,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970a8e15d82e4e84ead85b7fee8b0862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  categoryPrefab: {fileID: 0}
-  selectedMaterial: {fileID: 0}
+  categoryPrefab: {fileID: 9188344368109057068, guid: 3c2fd1267c7413a4f90cbb8270af1c07,
+    type: 3}
+  selectedMaterial: {fileID: 2100000, guid: 8032c69854dbcba46b4937d853045621, type: 2}
   selected: 0
-  dataColumnName: 5
-  MyColumnName: 5
+  dataColumnName: 6
+  MyColumnName: 6

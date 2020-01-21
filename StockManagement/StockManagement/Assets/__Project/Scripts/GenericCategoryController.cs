@@ -26,9 +26,11 @@ public class GenericCategoryController : MonoBehaviour
 
     [SerializeField] private DataColumnName dataColumnName;
 
-public void Init(string name, List<InventoryLineItem> lineItemList)
+    public void Init(string name, List<InventoryLineItem> lineItemList)
     {
         this.inventoryLineItems = lineItemList;
+        columnXform = GetCorrectColumnTransform();
+
     }
 
     private void OnMouseDown()
@@ -38,23 +40,20 @@ public void Init(string name, List<InventoryLineItem> lineItemList)
         //DeselectSiblings();
     }
 
+    Transform columnXform;
+    List<GenericCategoryController> childCategoryControllers;
     private void ExpandData()
     {
-        //Clear column of old entries
-        Transform columnXform = GetCorrectColumnTransform();
-        //use an enum to get the "downline" columns, and remove their entries.
-        for (int i = columnXform.childCount - 1; i >= 1; --i)
-        {
-            GameObject toRemove = columnXform.GetChild(i).gameObject;
-            toRemove.transform.parent = null;
-            Destroy(toRemove);
-        }
+        ClearFilter();
 
         int childcount = columnXform.childCount;
 
         PopulateCategoryDictionary();
 
         float offsetY = 0;
+
+        childCategoryControllers = new List<GenericCategoryController>();
+
         foreach (var categoryItem in category)
         {
             //instantiate the MainCategory prefab here
@@ -66,15 +65,53 @@ public void Init(string name, List<InventoryLineItem> lineItemList)
 
             //pass information to instantiated categoryObject
             GenericCategoryController categoryController = categoryObject.GetComponent<GenericCategoryController>();
-            categoryController.Init(categoryItem.Key, categoryItem.Value);
+            if(categoryController == null)
+            {
+                FinalCategoryController finalCategoryController = categoryObject.GetComponent<FinalCategoryController>();
+                finalCategoryController.Init(categoryItem.Value);
 
-            //set names
-            categoryObject.name = categoryItem.Key + "_Object";
-            categoryObject.GetComponentInChildren<TextMeshPro>().text = categoryItem.Key;
+            }
+            else
+            {
+                categoryController.Init(categoryItem.Key, categoryItem.Value);
+
+                //set names
+                categoryObject.name = categoryItem.Key + "_Object";
+                categoryObject.GetComponentInChildren<TextMeshPro>().text = categoryItem.Key;
+
+                childCategoryControllers.Add(categoryController);
+            }
 
             //highlight
             ShowAsSelected(categoryObject);
         }
+    }
+
+    /// <summary>
+    /// Clear columns of old entries
+    /// </summary>
+    void ClearFilter()
+    {
+        if (childCategoryControllers != null)
+        {
+            foreach (GenericCategoryController item in childCategoryControllers)
+            {
+                item.ClearFilter();
+            }
+        }
+
+        for (int i = columnXform.childCount - 1; i >= 1; --i)
+        {
+            GameObject toRemove = columnXform.GetChild(i).gameObject;
+            toRemove.transform.parent = null;
+            GenericCategoryController categoryControllerToRemove = toRemove.GetComponent<GenericCategoryController>();
+            if(categoryControllerToRemove != null)
+            {
+                categoryControllerToRemove.ClearFilter();
+            }
+            Destroy(toRemove);
+        }
+        
     }
 
     //to place objects under
@@ -92,21 +129,6 @@ public void Init(string name, List<InventoryLineItem> lineItemList)
         }
         return null;
     }
-
-    private void DeselectSiblings()
-    {
-        foreach (var item in FindObjectsOfType<MainCategoryController>())
-        {
-            if (item.GetComponent<MainCategoryController>().selected)
-                continue;
-            else
-            {
-                //item.gameObject.SetActive(false);
-            }
-
-        }
-    }
-
 
     private void ShowAsSelected(GameObject selectedObject)
     {
@@ -160,8 +182,11 @@ public void Init(string name, List<InventoryLineItem> lineItemList)
                 list = new List<InventoryLineItem>();
                 category.Add(fieldValue, list);
             }
-
+            //lineItem is the row containing all the entries.
             list.Add(lineItem);
+
+            //if the gameObject contains a ItemProperties component, send last 12 columns' info to ItemProperties Component
+            //display properties contained within the ItemProperties Component
         }
     }
 
