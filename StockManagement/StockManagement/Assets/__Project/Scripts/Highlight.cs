@@ -25,7 +25,8 @@ public class Highlight : MonoBehaviour
 
         ChangeModelColor(highlightMat);
         ChangeTextColor(Color.yellow);
-        ScaleUp(new Vector3(scaleUpValue, scaleUpValue, 1));
+        ShowLight(true);
+        ScaleUp(new Vector3(scaleUpValue, 1, 1));
     }
 
     private void OnMouseExit()
@@ -34,7 +35,7 @@ public class Highlight : MonoBehaviour
         {
             ChangeModelColor(originalMat);
             ChangeTextColor(Color.gray);
-
+            ShowLight(false);
         }
         ScaleUp(Vector3.one);
     }
@@ -61,6 +62,11 @@ public class Highlight : MonoBehaviour
         transform.GetChild(1).GetComponent<TextMeshPro>().color = newCol;
     }
 
+    void ShowLight(bool state)
+    {
+            if(GetComponent<Light>() != null) GetComponent<Light>().enabled = state;
+    }
+
     void ScaleUp(Vector3 scaleVector)
     {
         transform.GetChild(0).localScale = scaleVector;
@@ -82,6 +88,7 @@ public class Highlight : MonoBehaviour
             {
                 ChangeModelColor(originalMat);
                 ChangeTextColor(Color.gray);
+                ShowLight(false);
             }
         }
     }

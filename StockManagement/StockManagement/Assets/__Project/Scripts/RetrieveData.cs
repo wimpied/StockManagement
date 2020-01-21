@@ -136,8 +136,6 @@ public class RetrieveData : MonoBehaviour
 
                 string totalValueString = values[23].Replace("-", "0");
                 totalValueString = totalValueString.Replace(",", "");
-                //Debug.Log("string: " + totalValueString);
-                //float.TryParse(totalValueString, out newLineItem.TotalValueofItem);
                 float.TryParse(totalValueString, System.Globalization.NumberStyles.Any, new System.Globalization.CultureInfo("en-US"), out newLineItem.TotalValueofItem);
                 Debug.Log("string: " + totalValueString + " added: " + newLineItem.TotalValueofItem);
                 inventoryLineItems.Add(newLineItem);

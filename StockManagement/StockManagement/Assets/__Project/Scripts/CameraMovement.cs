@@ -23,6 +23,15 @@ public class CameraMovement : MonoBehaviour
         {
             transform.position += new Vector3(-0.1f * speed * Time.deltaTime, 0, 0);
         }
+        if (Input.GetKey(KeyCode.PageUp))
+        {
+            transform.position += new Vector3(0, 0, 0.1f * speed * Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.PageDown))
+        {
+            transform.position += new Vector3(0, 0, -0.1f * speed * Time.deltaTime);
+        }
+
     }
 
 
