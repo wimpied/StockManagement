@@ -22,7 +22,7 @@ public class RetrieveData : MonoBehaviour
         float offsetY = 0;
         foreach (var categoryItem in mainCategory)
         {
-            Debug.Log(categoryItem.Key);
+            //Debug.Log(categoryItem.Key);
 
             //instantiate the MainCategory prefab here
             GameObject categoryObject = Instantiate(mainCategoryPrefab, GetCorrectColumnTransform());
@@ -42,7 +42,7 @@ public class RetrieveData : MonoBehaviour
             ShowAsSelected(categoryObject);
         }
 
-        Debug.Log(inventoryLineItems.Count + " line items retrieved from CSV");
+        //Debug.Log(inventoryLineItems.Count + " line items retrieved from CSV");
     }
 
     //to place objects under
@@ -128,9 +128,18 @@ public class RetrieveData : MonoBehaviour
                 int.TryParse(values[19], out newLineItem.MaxStockQTY);
                 int.TryParse(values[20], out newLineItem.ReorderQTY);
                 float.TryParse(values[21], out newLineItem.SafetyStockQTY);
-                float.TryParse(values[22], out newLineItem.MovingAveragePrice);
-                float.TryParse(values[23], out newLineItem.TotalValueofItem);
 
+                string movingAVGpriceString = values[22].Replace("-", "0");
+                movingAVGpriceString = movingAVGpriceString.Replace(",", "");
+                movingAVGpriceString = movingAVGpriceString.Replace("$", "");
+                float.TryParse(values[22], out newLineItem.MovingAveragePrice);
+
+                string totalValueString = values[23].Replace("-", "0");
+                totalValueString = totalValueString.Replace(",", "");
+                //Debug.Log("string: " + totalValueString);
+                //float.TryParse(totalValueString, out newLineItem.TotalValueofItem);
+                float.TryParse(totalValueString, System.Globalization.NumberStyles.Any, new System.Globalization.CultureInfo("en-US"), out newLineItem.TotalValueofItem);
+                Debug.Log("string: " + totalValueString + " added: " + newLineItem.TotalValueofItem);
                 inventoryLineItems.Add(newLineItem);
 
             }

@@ -82,8 +82,6 @@ public class GenericCategoryController : MonoBehaviour
                 childCategoryControllers.Add(categoryController);
             }
 
-            //highlight
-            ShowAsSelected(categoryObject);
         }
     }
 
@@ -128,13 +126,6 @@ public class GenericCategoryController : MonoBehaviour
             }
         }
         return null;
-    }
-
-    private void ShowAsSelected(GameObject selectedObject)
-    {
-        selectedObject.GetComponentInChildren<Renderer>().material = selectedMaterial;
-        if (this.GetComponentInChildren<Renderer>() != null)
-            this.GetComponentInChildren<Renderer>().material = selectedMaterial;
     }
 
     private void PopulateCategoryDictionary()

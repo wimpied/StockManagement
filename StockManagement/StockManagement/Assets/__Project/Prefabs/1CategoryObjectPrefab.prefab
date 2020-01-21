@@ -347,6 +347,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightMat: {fileID: 2100000, guid: 66863163611231f4bb7cbc32c3fe01ad, type: 2}
   scaleUpValue: 3
+  lowLight: {fileID: 2100000, guid: 624a13018cfb5e9429bcdb52b668104a, type: 2}
+  SelectedMat: {fileID: 2100000, guid: d095474da7a76ba42aaad89f1e980bfc, type: 2}
 --- !u!114 &5771575573206702987
 MonoBehaviour:
   m_ObjectHideFlags: 0
