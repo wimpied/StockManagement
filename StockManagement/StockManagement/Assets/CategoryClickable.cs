@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CategoryClickable : MonoBehaviour
 {
+    public GenericCategoryController.DataColumnName dataColumnName;
+    public GenericCategoryController CategoryController;
     private Mesh meshToAssignToCollider;
         
     void AssignMeshToCollider()
@@ -22,6 +24,7 @@ public class CategoryClickable : MonoBehaviour
     private void OnMouseDown()
     {
         Debug.Log("Clicked on: " + GetComponent<MeshCollider>().sharedMesh.name);
+        CategoryController.ExpandData();
     }
 
 }

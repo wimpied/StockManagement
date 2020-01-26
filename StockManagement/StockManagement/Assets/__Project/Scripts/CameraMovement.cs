@@ -9,27 +9,27 @@ public class CameraMovement : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.DownArrow))
         {
-            transform.position += new Vector3(0, 0.1f * speed * Time.deltaTime, 0);
+            transform.position += new Vector3(0, 0 , 0.1f) * speed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            transform.position += new Vector3(0 , -0.1f * speed * Time.deltaTime, 0);
+            transform.position += new Vector3(0 , -0 , -0.1f) * speed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.position += new Vector3(0.1f * speed * Time.deltaTime, 0, 0);
+            transform.position += new Vector3(0.1f , 0, 0) * speed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.position += new Vector3(-0.1f * speed * Time.deltaTime, 0, 0);
+            transform.position += new Vector3(-0.1f, 0, 0) * speed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.PageUp))
         {
-            transform.position += new Vector3(0, 0, 0.1f * speed * Time.deltaTime);
+            transform.position += new Vector3(0, -0.1f,0) * speed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.PageDown))
         {
-            transform.position += new Vector3(0, 0, -0.1f * speed * Time.deltaTime);
+            transform.position += new Vector3(0, 0.1f,0) * speed * Time.deltaTime;
         }
 
     }

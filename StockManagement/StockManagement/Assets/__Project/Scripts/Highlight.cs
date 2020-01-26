@@ -52,8 +52,10 @@ public class Highlight : MonoBehaviour
 
     private void OnMouseDown()
     {
+        
         foreach (Highlight item in transform.parent.GetComponentsInChildren<Highlight>())
         {
+            if (item == null) continue;
             if (item != this)
             {
                 item.Select(false);
