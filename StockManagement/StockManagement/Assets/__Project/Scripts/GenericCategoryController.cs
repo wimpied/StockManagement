@@ -42,7 +42,7 @@ public class GenericCategoryController : MonoBehaviour
 
     Transform columnXform;
     List<GenericCategoryController> childCategoryControllers;
-    private void ExpandData()
+    public void ExpandData()
     {
         ClearFilter();
 

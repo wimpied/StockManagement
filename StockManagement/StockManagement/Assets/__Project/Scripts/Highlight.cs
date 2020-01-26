@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(Outline))]
 public class Highlight : MonoBehaviour
 {
     [SerializeField] private Material highlightMat;
-    [SerializeField] private float scaleUpValue;
-    private Material originalMat;
+    [SerializeField] bool scaleOnHover = true;
+    [SerializeField] private float scaleUpValue = 1;
+    [Space(10)]
+    [SerializeField] float outlineWidth;
+    [SerializeField] Color outlineColor;
 
+    private Material originalMat;
 
     private void Start()
     {
@@ -26,6 +31,8 @@ public class Highlight : MonoBehaviour
         ChangeModelColor(highlightMat);
         ChangeTextColor(Color.yellow);
         ShowLight(true);
+        ShowOutline(true);
+        if(scaleOnHover)
         ScaleUp(new Vector3(scaleUpValue, 1, 1));
     }
 
@@ -36,7 +43,10 @@ public class Highlight : MonoBehaviour
             ChangeModelColor(originalMat);
             ChangeTextColor(Color.gray);
             ShowLight(false);
+            ShowOutline(false);
         }
+        
+        if(scaleOnHover)
         ScaleUp(Vector3.one);
     }
 
@@ -47,7 +57,6 @@ public class Highlight : MonoBehaviour
             if (item != this)
             {
                 item.Select(false);
-                //Debug.Log(item.name);
             }
         }
         Select(true);
@@ -55,21 +64,31 @@ public class Highlight : MonoBehaviour
 
     void ChangeModelColor(Material mat)
     {
-        transform.GetChild(0).GetComponent<Renderer>().material = mat;
+        if (transform.GetChild(0).GetComponent<Renderer>() != null)
+            transform.GetChild(0).GetComponent<Renderer>().material = mat;
     }
     void ChangeTextColor(Color newCol)
     {
-        transform.GetChild(1).GetComponent<TextMeshPro>().color = newCol;
+        if(GetComponentInChildren<TextMeshPro>() != null)
+            GetComponentInChildren<TextMeshPro>().color = newCol;
     }
-
     void ShowLight(bool state)
     {
             if(GetComponent<Light>() != null) GetComponent<Light>().enabled = state;
     }
-
     void ScaleUp(Vector3 scaleVector)
     {
         transform.GetChild(0).localScale = scaleVector;
+    }
+    void ShowOutline(bool state)
+    {
+        Outline outline = GetComponent<Outline>();
+
+        if (outline != null)
+        {
+            outline.OutlineColor = outlineColor;
+            outline.OutlineWidth = outlineWidth;
+        }
     }
 
     public Material SelectedMat;
@@ -89,6 +108,8 @@ public class Highlight : MonoBehaviour
                 ChangeModelColor(originalMat);
                 ChangeTextColor(Color.gray);
                 ShowLight(false);
+                ShowOutline(false);
+
             }
         }
     }
