@@ -4,27 +4,26 @@ using UnityEngine;
 
 public class CategoryClickable : MonoBehaviour
 {
-    public GenericCategoryController.DataColumnName dataColumnName;
     public GenericCategoryController CategoryController;
-    private Mesh meshToAssignToCollider;
-        
-    void AssignMeshToCollider()
-    {
-        if (GetComponent<MeshCollider>() == null) return;
-
-        GetComponent<MeshCollider>().sharedMesh = GetComponentInChildren<MeshFilter>().mesh;
-        GetComponent<MeshCollider>().convex = true;
-    }
-
+    RetrieveData InitialData;
+    LerpToDestination lerp;
     private void Start()
     {
-        AssignMeshToCollider();
+        InitialData = FindObjectOfType<RetrieveData>();
+        lerp = FindObjectOfType<LerpToDestination>();
     }
 
     private void OnMouseDown()
     {
-        Debug.Log("Clicked on: " + GetComponent<MeshCollider>().sharedMesh.name);
-        CategoryController.ExpandData();
+        //Debug.Log("Clicked on: " + GetComponent<MeshCollider>().sharedMesh.name);
+
+        Queue<string> itemToSelect = new Queue<string>(Category);
+        InitialData.AutoSelectItems(itemToSelect);
+        lerp.SetLerpDestination(GetComponentInChildren<Camera>().transform);   
+     
     }
+
+    public string[] Category;
+    
 
 }

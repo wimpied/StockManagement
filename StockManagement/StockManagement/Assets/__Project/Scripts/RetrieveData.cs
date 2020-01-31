@@ -13,17 +13,22 @@ public class RetrieveData : MonoBehaviour
 
     List<InventoryLineItem> inventoryLineItems;
     Dictionary<string, List<InventoryLineItem>> mainCategory;
+    List<GenericCategoryController> rootCategories;
     private void Start()
     {
         LoadDataFromCSV();
-  
+
         PopulateMainCategoryDictionary();
 
+        CreateRootCategories();
+    }
+
+    private void CreateRootCategories()
+    {
         float offsetY = 0;
+        rootCategories = new List<GenericCategoryController>();
         foreach (var categoryItem in mainCategory)
         {
-            //Debug.Log(categoryItem.Key);
-
             //instantiate the MainCategory prefab here
             GameObject categoryObject = Instantiate(mainCategoryPrefab, GetCorrectColumnTransform());
             //offset objects here
@@ -40,9 +45,30 @@ public class RetrieveData : MonoBehaviour
 
             //highlight
             ShowAsSelected(categoryObject);
+            rootCategories.Add(categoryController);
         }
 
         //Debug.Log(inventoryLineItems.Count + " line items retrieved from CSV");
+    }
+
+    public void AutoSelectItems(Queue<string> itemToSelect)
+    {
+        ClearAutoSelectedItems();
+
+        string rootItemToSelect =  itemToSelect.Dequeue();
+        foreach (GenericCategoryController controller in rootCategories)
+        {
+            if (controller.LineItemName == rootItemToSelect)
+                controller.ExpandData(itemToSelect);
+        }
+    }
+
+    void ClearAutoSelectedItems()
+    {
+        foreach (GenericCategoryController categoryController in rootCategories)
+        {
+            categoryController.ClearFilter();
+        }
     }
 
     //to place objects under
@@ -100,7 +126,8 @@ public class RetrieveData : MonoBehaviour
             sReader.ReadLine(); // Skip header row
             while (!sReader.EndOfStream)
             {
-                var values = removeQuotedStrings(sReader.ReadLine()).Split(',');
+                string line = sReader.ReadLine();
+                var values = removeQuotedStrings(line).Split(',');
                 for (int i = 0; i < values.Length; i++)
                     values[i] = values[i].Replace("&Comma&", ",");
 
@@ -137,7 +164,7 @@ public class RetrieveData : MonoBehaviour
                 string totalValueString = values[23].Replace("-", "0");
                 totalValueString = totalValueString.Replace(",", "");
                 float.TryParse(totalValueString, System.Globalization.NumberStyles.Any, new System.Globalization.CultureInfo("en-US"), out newLineItem.TotalValueofItem);
-                Debug.Log("string: " + totalValueString + " added: " + newLineItem.TotalValueofItem);
+                //Debug.Log("string: " + totalValueString + " added: " + newLineItem.TotalValueofItem);
                 inventoryLineItems.Add(newLineItem);
 
             }
@@ -154,8 +181,9 @@ public class RetrieveData : MonoBehaviour
         {
             output += input.Substring(0, index);
             input = input.Substring(index + 1);
-            index = input.IndexOf("\"");
-            output += input.Substring(0, index).Replace(",", "&Comma&");
+            index = input.IndexOf("\",");
+            if(index == -1) index = input.IndexOf("\"");
+            output += input.Substring(0, index).Replace(",", "&Comma&").Replace("\"\"","\"");
             input = input.Substring(index + 1);
             index = input.IndexOf("\"");
         }

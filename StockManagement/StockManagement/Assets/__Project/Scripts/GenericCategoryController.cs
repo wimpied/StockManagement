@@ -25,18 +25,17 @@ public class GenericCategoryController : MonoBehaviour
     }
 
     [SerializeField] private DataColumnName dataColumnName;
-
+    public string LineItemName;
     public void Init(string name, List<InventoryLineItem> lineItemList)
     {
         this.inventoryLineItems = lineItemList;
         columnXform = GetCorrectColumnTransform();
-
+        LineItemName = name;
     }
 
     private void OnMouseDown()
     {
         ExpandData();
-        selected = true;
         //DeselectSiblings();
     }
 
@@ -44,6 +43,18 @@ public class GenericCategoryController : MonoBehaviour
     List<GenericCategoryController> childCategoryControllers;
     public void ExpandData()
     {
+        ExpandData(null);
+    }
+
+    public void ExpandData(Queue<string> itemToSelect)
+    {
+        string currentCategoryItemToSelect = "";
+        if(itemToSelect != null && itemToSelect.Count > 0)
+        {
+            currentCategoryItemToSelect = itemToSelect.Dequeue();
+        }
+        selected = true;
+
         ClearFilter();
 
         int childcount = columnXform.childCount;
@@ -79,6 +90,11 @@ public class GenericCategoryController : MonoBehaviour
                 categoryObject.name = categoryItem.Key + "_Object";
                 categoryObject.GetComponentInChildren<TextMeshPro>().text = categoryItem.Key;
 
+                if(categoryItem.Key == currentCategoryItemToSelect && !string.IsNullOrEmpty(categoryItem.Key))
+                {
+                    categoryController.ExpandData(itemToSelect);
+                }
+
                 childCategoryControllers.Add(categoryController);
             }
 
@@ -88,7 +104,7 @@ public class GenericCategoryController : MonoBehaviour
     /// <summary>
     /// Clear columns of old entries
     /// </summary>
-    void ClearFilter()
+    public void ClearFilter()
     {
         if (childCategoryControllers != null)
         {
