@@ -36,6 +36,7 @@ public class GenericCategoryController : MonoBehaviour
     private void OnMouseDown()
     {
         ExpandData();
+        GetClickedFilterlevel();
         //DeselectSiblings();
     }
 
@@ -143,6 +144,13 @@ public class GenericCategoryController : MonoBehaviour
         }
         return null;
     }
+
+    void GetClickedFilterlevel()
+    {
+        FindObjectOfType<CategoryManager>().SetCurrentFilterLevel((int)GetCorrectColumnTransform().GetComponent<ColumnIdentifier>().ThisColumnName);
+
+    }
+
 
     private void PopulateCategoryDictionary()
     {
