@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GenericCategoryController : MonoBehaviour
 {
@@ -37,8 +40,25 @@ public class GenericCategoryController : MonoBehaviour
     {
         ExpandData();
         GetClickedFilterlevel();
+        LocateItemOfInterest();
         //DeselectSiblings();
     }
+
+    public static event Action<Transform> BecomePOI;
+    ItemIdentifier[] identifiers;
+    void LocateItemOfInterest()
+    {
+
+        identifiers = FindObjectsOfType<ItemIdentifier>();
+        ItemIdentifier itemOfInterest = identifiers.Where(identifier => identifier.ID == LineItemName).FirstOrDefault();
+        if (itemOfInterest == null) return;
+
+        Debug.Log(itemOfInterest.gameObject.name);
+        //do things here when object is found.
+        BecomePOI?.Invoke(itemOfInterest.transform);
+
+    }
+
 
     Transform columnXform;
     List<GenericCategoryController> childCategoryControllers;

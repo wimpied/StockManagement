@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class LerpToDestination : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    private void OnEnable()
     {
-        
+        GenericCategoryController.BecomePOI += SetLerpDestinationToCamera;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (t >= 1) return;
@@ -24,9 +23,23 @@ public class LerpToDestination : MonoBehaviour
     public float animationTime = 3;
     public void SetLerpDestination(Transform dest)
     {
+        Debug.Log("Lerping to: " + dest.transform.parent.gameObject.name);
         lerpStart = transform;
         lerpEnd = dest;
         t = 0;
+
+    }
+
+    public void SetLerpDestinationToCamera(Transform dest)
+    {
+        if (dest.GetComponentInChildren<Camera>() != null)
+            SetLerpDestination(dest.GetComponentInChildren<Camera>().transform);
+        else Debug.Log("No Camera to move to...");
+    }
+
+    private void OnDisable()
+    {
+        GenericCategoryController.BecomePOI -= SetLerpDestinationToCamera;
 
     }
 
