@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1227307420021372465}
-  m_LocalRotation: {x: -0, y: -0.7071086, z: 0.70710504, w: 0}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
   m_LocalPosition: {x: 43, y: 50, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -46,13 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 248f91d48e4e5cf4b805f315ec130a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CategoryController: {fileID: 0}
-  Category:
-  - Processing
-  - Crushing
-  - Crushers
-  - Voyager
-  - CONE 5 1/2"
+  Category: []
 --- !u!54 &1227307420021372475
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -186,13 +180,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1227307421015656131}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.16490452, y: 0.517322, z: -0.015789058, w: 0.8396042}
+  m_LocalPosition: {x: -43.7, y: 31.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1227307420021372470}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 17.052, y: 64.581, z: 8.669001}
 --- !u!20 &1227307421015656129
 Camera:
   m_ObjectHideFlags: 0

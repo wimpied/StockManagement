@@ -10,7 +10,7 @@ public class FadeChildren : MonoBehaviour {
 	public AnimationCurve FadeInAnimation;
 	public AnimationCurve FadeOutAnimation;
 	public float AnimationTime;
-
+    public bool StartFadedOut;
 	private List<Material> mats = new List<Material>();
 	private List<Color> colors = new List<Color>();
 	private float t =1;
@@ -22,9 +22,15 @@ public class FadeChildren : MonoBehaviour {
 			foreach(Material m in ren.materials)
 			{
 				mats.Add(m);
+                if(m.HasProperty("_Color"))
 				colors.Add(m.color);
 			}
 		} 
+        if(StartFadedOut)
+        {
+            switchToFade();
+            setFade(0);
+        }
 	}
 	
 	
