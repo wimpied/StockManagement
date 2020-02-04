@@ -8,7 +8,7 @@ public class CanvasController : MonoBehaviour
     {
         foreach (Collider item in FindObjectsOfType<Collider>())
         {
-            item.enabled = false;
+            //item.enabled = false;
         }
     }
 
@@ -16,6 +16,7 @@ public class CanvasController : MonoBehaviour
     {
         foreach (Collider item in FindObjectsOfType<Collider>())
         {
+            Debug.Log(item.name + " enabled");
             item.enabled = true;
         }
     }
