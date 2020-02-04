@@ -24,7 +24,8 @@ public class GenericCategoryController : MonoBehaviour
         STATGROUP5,
         STATGROUP6,
         STATGROUP7,
-        STATGROUP8
+        STATGROUP8,
+        ItemStatus
     }
 
     [SerializeField] private DataColumnName dataColumnName;
@@ -205,6 +206,9 @@ public class GenericCategoryController : MonoBehaviour
                     break;
                 case DataColumnName.STATGROUP8:
                     fieldValue = lineItem.STATGROUP8;
+                    break;
+                case DataColumnName.ItemStatus:
+                    fieldValue = lineItem.ItemStatus;
                     break;
                 default:
                     break;

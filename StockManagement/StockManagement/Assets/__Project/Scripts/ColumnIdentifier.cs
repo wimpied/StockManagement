@@ -13,7 +13,8 @@ public class ColumnIdentifier : MonoBehaviour
         FifthColumn,
         SixthColumn,
         SeventColumn,
-        EightColumn
+        EightColumn,
+        NinthColumn
 
     }
 

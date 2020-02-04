@@ -347,7 +347,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightMat: {fileID: 2100000, guid: 66863163611231f4bb7cbc32c3fe01ad, type: 2}
+  scaleOnHover: 1
   scaleUpValue: 3
+  outlineWidth: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 0}
   SelectedMat: {fileID: 2100000, guid: d095474da7a76ba42aaad89f1e980bfc, type: 2}
 --- !u!114 &7745241568764391686
 MonoBehaviour:
@@ -366,6 +369,7 @@ MonoBehaviour:
   selectedMaterial: {fileID: 2100000, guid: 686068e8dd6bb134aadfd72512577f94, type: 2}
   selected: 0
   dataColumnName: 3
+  LineItemName: 
   MyColumnName: 3
 --- !u!108 &4521236010973678406
 Light:

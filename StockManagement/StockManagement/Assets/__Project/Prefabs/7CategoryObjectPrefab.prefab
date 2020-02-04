@@ -347,7 +347,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightMat: {fileID: 2100000, guid: 66863163611231f4bb7cbc32c3fe01ad, type: 2}
+  scaleOnHover: 1
   scaleUpValue: 3
+  outlineWidth: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 0}
   SelectedMat: {fileID: 2100000, guid: d095474da7a76ba42aaad89f1e980bfc, type: 2}
 --- !u!114 &3619034134309973233
 MonoBehaviour:
@@ -361,11 +364,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970a8e15d82e4e84ead85b7fee8b0862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  categoryPrefab: {fileID: 9188344368109057068, guid: 7405a0cc2879d9742b2ddb406fbeba68,
+  categoryPrefab: {fileID: 9188344368109057068, guid: 270a5cb1af42be34596f7468b4b2451a,
     type: 3}
   selectedMaterial: {fileID: 2100000, guid: 007fb34537d5c6c4fa1f2bc28957b5ba, type: 2}
   selected: 0
   dataColumnName: 7
+  LineItemName: 
   MyColumnName: 7
 --- !u!108 &5364755253520571366
 Light:
