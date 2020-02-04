@@ -16,6 +16,7 @@ public class CategoryClickable : MonoBehaviour
     {
         Queue<string> itemToSelect = new Queue<string>(Category);
         InitialData.AutoSelectItems(itemToSelect);
+        if(GetComponentInChildren<Camera>() != null)
         lerp.SetLerpDestination(GetComponentInChildren<Camera>().transform);   
      
     }

@@ -23,6 +23,7 @@ public class LerpToDestination : MonoBehaviour
     public float animationTime = 3;
     public void SetLerpDestination(Transform dest)
     {
+        if(dest.transform.parent.gameObject != null)
         Debug.Log("Lerping to: " + dest.transform.parent.gameObject.name);
         lerpStart = transform;
         lerpEnd = dest;

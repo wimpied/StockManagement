@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CategoryManager : MonoBehaviour
 {
+    public TextMeshProUGUI[] textMeshUIs;
     public int currentCategoryLevel;
     private List<string> filterList = new List<string>();
 
@@ -20,17 +22,25 @@ public class CategoryManager : MonoBehaviour
     public void SetCurrentFilterLevel(int currentFilterFromClick)
     {
         currentCategoryLevel = currentFilterFromClick;
-        Debug.Log("Current filter level is: " + currentCategoryLevel);
-        Debug.Log("Current active column is: " + (ColumnIdentifier.ColumnNames)currentCategoryLevel);
+       // Debug.Log("Current filter level is: " + currentCategoryLevel);
+       // Debug.Log("Current active column is: " + (ColumnIdentifier.ColumnNames)currentCategoryLevel);
     }
 
-    public void AddStringToFilterList(string itemToAdd)
+    public void SetUILabelAccordingToClickedItem(string clickedItemName, ColumnIdentifier.ColumnNames MyColumnName)
     {
-        //go through list and remove to index sent
-        Debug.Log("Current filter index is: " + currentCategoryLevel);
+        for (int i = 0; i < textMeshUIs.Length; i++)
+        {
+            if (i < currentCategoryLevel) continue;
+            textMeshUIs[i].text = "";
+        }
 
-        filterList.Add(itemToAdd);
-
+        foreach (UIColumnIdentifier item in FindObjectsOfType<UIColumnIdentifier>())
+        {
+            if (item.MyColumnMatch == MyColumnName)
+            {
+                item.GetComponent<TextMeshProUGUI>().text = clickedItemName + " > ";
+            }
+        }
     }
 
     /*
