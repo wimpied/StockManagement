@@ -34,7 +34,7 @@ public class LerpToDestination : MonoBehaviour
     {
         if (dest.GetComponentInChildren<Camera>() != null)
             SetLerpDestination(dest.GetComponentInChildren<Camera>().transform);
-        else Debug.Log("No Camera to move to...");
+        //else Debug.Log("No Camera to move to...");
     }
 
     private void OnDisable()

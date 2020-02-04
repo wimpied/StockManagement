@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CategoryManager : MonoBehaviour
 {
-    [HideInInspector] public int currentCategoryLevel;
+    public int currentCategoryLevel;
+    private List<string> filterList = new List<string>();
 
     public void IncreaseCurrentFilterLevel()
     {
@@ -21,6 +22,15 @@ public class CategoryManager : MonoBehaviour
         currentCategoryLevel = currentFilterFromClick;
         Debug.Log("Current filter level is: " + currentCategoryLevel);
         Debug.Log("Current active column is: " + (ColumnIdentifier.ColumnNames)currentCategoryLevel);
+    }
+
+    public void AddStringToFilterList(string itemToAdd)
+    {
+        //go through list and remove to index sent
+        Debug.Log("Current filter index is: " + currentCategoryLevel);
+
+        filterList.Add(itemToAdd);
+
     }
 
     /*

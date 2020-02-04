@@ -54,7 +54,7 @@ public class GenericCategoryController : MonoBehaviour
         ItemIdentifier itemOfInterest = identifiers.Where(identifier => identifier.ID == LineItemName).FirstOrDefault();
         if (itemOfInterest == null) return;
 
-        Debug.Log(itemOfInterest.gameObject.name);
+        //Debug.Log(itemOfInterest.gameObject.name);
         //do things here when object is found.
         BecomePOI?.Invoke(itemOfInterest.transform);
 
@@ -166,6 +166,17 @@ public class GenericCategoryController : MonoBehaviour
         return null;
     }
 
+    void GetCorrectUILabel()
+    {
+        foreach (UIColumnIdentifier item in FindObjectsOfType<UIColumnIdentifier>())
+        {
+            if (item.MyColumnMatch == MyColumnName)
+            {
+                item.GetComponent<TextMeshProUGUI>().text = item.name;
+            }
+        }
+    }
+
     void GetClickedFilterlevel()
     {
         FindObjectOfType<CategoryManager>().SetCurrentFilterLevel((int)GetCorrectColumnTransform().GetComponent<ColumnIdentifier>().ThisColumnName);
@@ -223,7 +234,7 @@ public class GenericCategoryController : MonoBehaviour
             }
             //lineItem is the row containing all the entries.
             list.Add(lineItem);
-
+            
             //if the gameObject contains a ItemProperties component, send last 12 columns' info to ItemProperties Component
             //display properties contained within the ItemProperties Component
         }
